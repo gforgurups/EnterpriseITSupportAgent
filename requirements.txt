@@ -4,17 +4,22 @@ faiss-cpu
 tiktoken
 langchain-community
 langchain-openai
+langchain-tavily
+langchain-pinecone
+langchain-text-splitters
 chromadb
 sentence-transformers
 pypdf
 python-dotenv
+python-docx
 pymupdf
 python-docx
 docx2txt
 unstructured
 pandas
-openpyxl
-msoffcrypto-tool
+pinecone
+openai
+
 jq
 matplotlib
 #Embedding
@@ -22,7 +27,6 @@ langchain-huggingface
 sentence-transformers
 langchain-experimental
 wikipedia
-langchain-google-genai
 ipykernel
 
 #langgraph
@@ -47,3 +51,7 @@ flashrank
 fastapi
 soundfile
 boto3==1.28.0
+uvicorn[standard]
+jinja2
+python-multipart
+pydantic-settings
