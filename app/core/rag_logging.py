@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import watchtower
 from pydantic import BaseModel
 from typing import Literal
-from pydantic_models import TextEvent
+from app.core.pydantic_models import TextEvent
 
 # 1. Load environment variables dynamically based on script location
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))

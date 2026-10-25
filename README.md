@@ -118,7 +118,50 @@ This repository demonstrates each layer.
 ```
 
 ---
+## Fast API Architecture
 
+       [ Public Internet / Client ]
+                    │
+                    │  (1) Raw HTTP / WebSocket Request
+                    ▼
+       ┌──────────────────────────┐
+       │         UVICORN          │  <-- ASGI Server
+       │   (Network & Protocol)   │      - Listens on Port (e.g., 8000)
+       └────────────┬─────────────┘      - Handles TCP / TLS
+                    │                    - Parses bytes using httptools
+                    │  (2) ASGI Dict / Scope
+                    ▼
+       ┌──────────────────────────┐
+       │         FASTAPI          │  <-- ASGI Framework
+       │   (Routing & Logic)      │      - Starlette handles routing
+       └────────────┬─────────────┘      - Pydantic validates payload
+                    │
+                    │  (3) Inside FastAPI Code Execution
+                    ▼
+        ┌───────────────────────┐
+        │ @app.get("/items/{id}")│      - Executes async/sync functions
+        │    - DB Lookup        │      - Builds data payload
+        │    - Business Logic   │
+        └───────────┬───────────┘
+                    │
+                    │  (4) Python Dict / JSON Data
+                    ▼
+       ┌──────────────────────────┐
+       │         FASTAPI          │      - Serializes data to JSON
+       └────────────┬─────────────┘      - Attaches Content-Type headers
+                    │
+                    │  (5) ASGI Send Events
+                    ▼
+       ┌──────────────────────────┐
+       │         UVICORN          │      - Wraps JSON into HTTP protocol
+       └────────────┬─────────────┘      - Manages connection lifetime
+                    │
+                    │  (6) Formatted HTTP Response (Bytes)
+                    ▼
+       [ Public Internet / Client ]
+
+
+---
 ## 4. Agentic RAG Workflow
 
 This follows the same core implementation pattern as the reference notebook.
