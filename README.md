@@ -163,13 +163,16 @@ This repository demonstrates each layer.
 
 The Stack Breakdown
 
-• ASGI (Asynchronous Server Gateway Interface): The Specification.
+** ASGI (Asynchronous Server Gateway Interface): The Specification.
 ASGI is not a piece of software; it is a standardized specification. It defines a common interface that allows asynchronous Python web servers and web applications to talk to one another. Think of it as the contract or rules of the road.
-• Uvicorn: The Web Server.
+
+** Uvicorn: The Web Server.
 Uvicorn is an ultra-fast, production-ready web server that implements the ASGI specification. It handles the low-level network communication—listening on a port, accepting raw HTTP bytes or WebSocket connections from clients, and translating them into standard ASGI messages.
-• Starlette: The Toolkit Framework.
+
+** Starlette: The Toolkit Framework.
 Starlette is a lightweight ASGI web framework toolkit built on top of ASGI. It takes the raw ASGI messages provided by Uvicorn and handles fundamental web routing, middleware (like CORS), cookies, sessions, and request/response abstractions.
-• FastAPI: The Application Layer.
+
+** FastAPI: The Application Layer.
 FastAPI is a highly specialized framework built directly on top of Starlette. It doesn't reinvent routing or middleware; it uses Starlette's under the hood. FastAPI's job is to add advanced features for building APIs, including strict data validation (via Pydantic), automatic interactive documentation (Swagger UI/ReDoc), and dependency injection.
 
 ---
